@@ -1,4 +1,4 @@
-import { encodeFormParams } from '@things-shell/client-utils'
+import { encodeFormParams } from '@things-factory/shell'
 
 function hexString(buffer) {
   const byteArray = new Uint8Array(buffer)
