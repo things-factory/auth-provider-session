@@ -1,5 +1,4 @@
 import { store, auth, HOMEPAGE, updateAuthenticated, showSnackbar, updateUser } from '@things-factory/shell'
-import { UPDATE_BASE_URL } from '@things-factory/shell'
 
 import SessionAuthProvider from './session-auth-provider'
 
@@ -75,9 +74,4 @@ export default function bootstrap() {
   document.addEventListener('profile-changed', onProfileChanged)
   document.addEventListener('authenticated-changed', onAuthenticatedChanged)
   document.addEventListener('auth-error-changed', onAuthErrorChanged)
-
-  store.dispatch({
-    type: UPDATE_BASE_URL,
-    baseUrl: 'http://board-demo.hatiolab.com/rest' //'http://52.231.75.202/rest'
-  })
 }
