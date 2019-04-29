@@ -1,4 +1,4 @@
-import { store, HOMEPAGE } from '@things-factory/shell'
+import { store } from '@things-factory/shell'
 import { auth } from '@things-factory/auth-base'
 import SessionAuthProvider from './session-auth-provider'
 
@@ -9,7 +9,7 @@ export default function bootstrap() {
     var baseUrl = state.app.baseUrl
 
     auth.contextPath = state.app.contextPath
-    auth.defaultRoutePage = state.app.defaultRoutePage
+    auth.defaultRoutePage = state.route.defaultRoutePage
 
     if (baseUrl && baseUrl !== auth.endpoint) {
       auth.endpoint = baseUrl
@@ -30,5 +30,4 @@ export default function bootstrap() {
   auth.signoutPage = ''
 
   auth.contextPath = ''
-  auth.defaultRoutePage = HOMEPAGE
 }
