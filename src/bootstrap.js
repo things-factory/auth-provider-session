@@ -1,5 +1,5 @@
-import { store, auth, HOMEPAGE } from '@things-factory/shell'
-
+import { store, HOMEPAGE } from '@things-factory/shell'
+import { auth } from '@things-factory/auth-base'
 import SessionAuthProvider from './session-auth-provider'
 
 export default function bootstrap() {
