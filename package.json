@@ -2,6 +2,7 @@
   "name": "@things-factory/auth-provider-session",
   "version": "0.0.12",
   "main": "src/index.js",
+  "browser": "src/index.js",
   "things-factory": true,
   "license": "MIT",
   "author": "heartyoh",
