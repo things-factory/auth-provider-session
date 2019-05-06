@@ -20,6 +20,10 @@ async function encodeSha256(password) {
   return hexString(buffer)
 }
 
+function _matchPass(newPassword, confirmPassword) {
+  return newPassword === confirmPassword
+}
+
 export default {
   signinPath: 'login',
   signupPath: 'signup',
@@ -27,6 +31,54 @@ export default {
   signoutPath: 'logout',
   signinPage: 'signin',
   signupPage: 'signup',
+  changepassPath: 'users/change_pass',
+
+  //run after the base connect this provider function
+  async changePassword(formProps) {
+    var newPassword = formProps.new_pass
+    var confirmPassword = formProps.confirm_pass
+    var currentPassword = formProps.current_pass
+
+    if (_matchPass(newPassword, confirmPassword)) {
+      // Request change password to server side, assign as object
+
+      formProps.new_pass = await encodeSha256(newPassword)
+      formProps.confirm_pass = await encodeSha256(confirmPassword)
+      formProps.current_pass = await encodeSha256(currentPassword)
+
+      try {
+        const response = await fetch(this.fullpath(`${this.changepassPath}/admin`), {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify(formProps)
+        })
+
+        if (response.ok) {
+          const data = await response.json()
+
+          if (data && data.error) {
+            this.onChangePwdError(data.error)
+          } else {
+            result = true
+          }
+        } else {
+          throw new Error(response.status)
+        }
+      } catch (e) {
+        this.onChangePwdError(e)
+      }
+    } else {
+      // show snack bar for pwd not match
+      console.log('Pwd is not matched.')
+    }
+    var result = false
+
+    return result
+  },
 
   async signup(formProps) {
     var { password } = formProps
