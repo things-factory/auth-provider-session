@@ -63,7 +63,7 @@ export default {
           if (data && data.error) {
             this.onChangePwdError(data.error)
           } else {
-            result = true
+            this.onPwdChanged(true)
           }
         } else {
           throw new Error(response.status)
