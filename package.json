@@ -1,6 +1,6 @@
 {
   "name": "@things-factory/auth-provider-session",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "main": "dist-server/index.js",
   "browser": "client/index.js",
   "things-factory": true,
