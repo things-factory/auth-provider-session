@@ -22,7 +22,6 @@ async function encodeSha256(password) {
 
 function _matchPass(newPassword, confirmPassword, currentPassword) {
   if (newPassword !== confirmPassword) {
-    debugger
     throw 'Your password is not matched'
   } else if (newPassword === currentPassword) {
     throw 'You are using old password'
